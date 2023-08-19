@@ -32,5 +32,9 @@ class AppServiceProvider extends ServiceProvider
             default => null,
         });
 
+        if ($this->app->environment('local')) {
+            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+        }
     }
 }

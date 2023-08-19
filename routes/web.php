@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FormController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +32,14 @@ Route::middleware('auth')->group(function(){
 
 Route::get('/form', [FormController::class, 'show'])
     ->name('form');
+
+
+Route::get('/user', function() {
+    $user = User::find(1);
+    $user->email = $user->email . 'test';
+    $user->unknown();
+    \App\Events\UserRegistered::dispatch();
+//   Cache::remember('user:1', '30', function () {
+//       return \App\Models\User::find(1);
+//   });
+});
