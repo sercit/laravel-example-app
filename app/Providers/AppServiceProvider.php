@@ -31,6 +31,5 @@ class AppServiceProvider extends ServiceProvider
             $user->subscription->level > 1 => 'elements',
             default => null,
         });
-
     }
 }
