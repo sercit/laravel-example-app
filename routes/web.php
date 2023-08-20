@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\FormController;
-use App\Models\User;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +25,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware('auth')->group(function(){
+    Route::get('/post', [PostController::class, 'index']);
+
     Route::get('/profile', function(){
         return view('profile');
     });
