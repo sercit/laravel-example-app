@@ -31,5 +31,10 @@ class AppServiceProvider extends ServiceProvider
             $user->subscription->level > 1 => 'elements',
             default => null,
         });
+
+        if ($this->app->environment('local')) {
+            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+        }
     }
 }
