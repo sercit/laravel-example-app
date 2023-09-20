@@ -1,8 +1,10 @@
 <?php
 
+use App\Features\BlackTheme;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Pennant\Feature;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,13 +37,15 @@ Route::middleware('auth')->group(function(){
 Route::get('/form', [FormController::class, 'show'])
     ->name('form');
 
-
-Route::get('/user', function() {
-    $user = User::find(1);
-    $user->email = $user->email . 'test';
-    $user->unknown();
-    \App\Events\UserRegistered::dispatch();
-//   Cache::remember('user:1', '30', function () {
-//       return \App\Models\User::find(1);
-//   });
-});
+//Route::group([
+//        'prefix' => '/card',
+//        'middleware' => ['feature:black-theme']
+//    ],function () {
+//       Route::get('/info');
+//       Route::delete('/delete');
+//});
+Route::get('/test', function ($request) {
+    return Feature::for($request->user()->subcription)->active(BlackTheme::class)
+    ? 'active'
+    : 'inactive';
+})->middleware(['feature:']);
