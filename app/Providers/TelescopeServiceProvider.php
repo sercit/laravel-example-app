@@ -33,6 +33,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
                    $entry->isFailedRequest() ||
                    $entry->isFailedJob() ||
                    $entry->isScheduledTask() ||
+                   $entry->isSlowQuery() ||
                    $entry->hasMonitoredTag();
         });
 

@@ -37,11 +37,15 @@ Route::get('/form', [FormController::class, 'show'])
 
 
 Route::get('/user', function() {
-    $user = User::find(1);
-    $user->email = $user->email . 'test';
-    $user->unknown();
-    \App\Events\UserRegistered::dispatch();
+    throw new \Exception('incorrect request');
+//    dump(auth()->user());
+//    $user = User::find(1);
+//    $user->email = $user->email . 'test';
+//    $user->unknown();
+//    \App\Events\UserRegistered::dispatch();
 //   Cache::remember('user:1', '30', function () {
 //       return \App\Models\User::find(1);
 //   });
 });
+
+
